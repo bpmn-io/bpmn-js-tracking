@@ -1,4 +1,4 @@
-import BpmnJSTracking from './BpmnJSTracking';
+import BpmnJSTracking from 'src/BpmnJSTracking';
 
 export default {
   __init__: [ 'bpmnJSTracking' ],
