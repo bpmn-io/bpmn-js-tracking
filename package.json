@@ -2,8 +2,8 @@
   "name": "@bpmn-io/bpmn-js-tracking",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
-  "module": "dist/index.es.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "scripts": {
     "all": "run-s lint test build",
     "lint": "eslint .",
