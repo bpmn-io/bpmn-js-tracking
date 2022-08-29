@@ -42,3 +42,8 @@ Customize this extension via the bpmnJSTracking config:
 | `canvas.palette.click` <br> `canvas.palette.dragstart`| <ul><li>name</li><li>data-action</li><li>selection</li></ul>|
 | `canvas.popupMenu.click` | <ul><li>name</li><li>data-id</li><li>selection</li></ul>|
 
+### Diagram events
+
+| Event Name | Structure |
+| :--- | :--- |
+| `diagram.select`| <ul><li>name</li><li>oldSelection</li><li>newSelection</li></ul>|
