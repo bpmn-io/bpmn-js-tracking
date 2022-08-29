@@ -2,10 +2,11 @@ import BpmnJSTracking from 'src/BpmnJSTracking';
 import trackingModules from 'src/trackingModules';
 
 export default {
-  __init__: [
-    'bpmnJSTracking',
-    'trackingModules'
+  __depends__: [
+    trackingModules
   ],
-  bpmnJSTracking: [ 'type', BpmnJSTracking ],
-  trackingModules: [ 'type', trackingModules ]
+  __init__: [
+    'bpmnJSTracking'
+  ],
+  bpmnJSTracking: [ 'type', BpmnJSTracking ]
 };
