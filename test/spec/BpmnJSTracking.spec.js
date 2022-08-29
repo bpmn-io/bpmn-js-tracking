@@ -28,6 +28,7 @@ describe('BpmnJSTracking', function() {
 
     // given
     const trackingService = getBpmnJS().get('bpmnJSTracking');
+    trackingService.enable();
 
     // then
     expect(trackingService).to.not.be.undefined;

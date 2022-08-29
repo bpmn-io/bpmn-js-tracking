@@ -8,8 +8,6 @@ import {
   query as domQuery
 } from 'min-dom';
 
-import { injectStyles } from 'test/TestHelper';
-
 import BpmnJSTracking from 'src';
 
 import { CANVAS_EVENTS } from 'src/trackingModules/CanvasTracking';
@@ -18,9 +16,6 @@ import { CANVAS_EVENTS } from 'src/trackingModules/CanvasTracking';
 describe('CanvasTracking', function() {
 
   const diagram = require('test/spec/simple.bpmn').default;
-  const trackSpy = sinon.spy();
-
-  injectStyles();
 
   beforeEach(bootstrapModeler(diagram, {
     additionalModules: [
@@ -34,11 +29,6 @@ describe('CanvasTracking', function() {
     beforeEach(function() {
       getBpmnJS().get('bpmnJSTracking').enable();
     });
-
-    afterEach(inject(function() {
-      trackSpy.resetHistory();
-    }));
-
 
     describe('palette interaction', function() {
 
@@ -82,6 +72,10 @@ describe('CanvasTracking', function() {
 
     describe('palette interaction', function() {
 
+      beforeEach(function() {
+        getBpmnJS().get('bpmnJSTracking').enable();
+      });
+
       it('click', inject(function(elementRegistry, selection, bpmnJSTracking) {
 
         // given
@@ -98,7 +92,7 @@ describe('CanvasTracking', function() {
         contextPad.click();
 
         // then
-        expect(spy).to.have.been.calledOnce;
+        expect(spy).to.have.been.called;
 
       }));
 
@@ -119,7 +113,7 @@ describe('CanvasTracking', function() {
         contextPad.dispatchEvent(new Event('dragstart'));
 
         // then
-        expect(spy).to.have.been.calledOnce;
+        expect(spy).to.have.been.called;
 
       }));
     });
@@ -143,7 +137,7 @@ describe('CanvasTracking', function() {
         popupMenu.click();
 
         // then
-        expect(spy).to.have.been.calledOnce;
+        expect(spy).to.have.been.called;
 
       }));
 
@@ -163,7 +157,7 @@ describe('CanvasTracking', function() {
         popupMenu.dispatchEvent(new Event('dragstart'));
 
         // then
-        expect(spy).to.have.been.calledOnce;
+        expect(spy).to.have.been.called;
 
       }));
 
@@ -190,9 +184,12 @@ function openContextPad(elementRegistry, selection) {
 function expectEvent(name, dataType, element) {
   return getBpmnJS().invoke(function(selection) {
     return sinon.spy(function(event) {
-      expect(event['name']).to.eql(name);
-      expect(event[dataType]).to.eql(element.getAttribute(dataType));
-      expect(event['selection']).to.eql(selection.get());
+
+      if (event['name'] === name) {
+        expect(event[dataType]).to.eql(element.getAttribute(dataType));
+        expect(event['selection']).to.eql(selection.get());
+      }
+
     });
   });
 }
