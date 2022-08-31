@@ -10,7 +10,7 @@ import {
 
 import { injectStyles } from 'test/TestHelper';
 
-import BpmnJSTracking from 'src/BpmnJSTracking';
+import BpmnJSTracking from 'src';
 
 import { CANVAS_EVENTS } from 'src/trackingModules/CanvasTracking';
 
@@ -25,11 +25,7 @@ describe('CanvasTracking', function() {
   beforeEach(bootstrapModeler(diagram, {
     additionalModules: [
       BpmnJSTracking
-    ],
-    bpmnJSTracking: {
-      optIn: function() {},
-      optOut: function() {}
-    }
+    ]
   }));
 
 
