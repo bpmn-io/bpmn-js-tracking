@@ -1,5 +1,1 @@
-import CanvasTracking from 'src/trackingModules/CanvasTracking';
-
-export default [
-  CanvasTracking
-];
+export { default } from 'src/trackingModules/CanvasTracking';
