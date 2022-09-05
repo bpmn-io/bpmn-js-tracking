@@ -37,7 +37,7 @@ describe('CanvasTracking', function() {
         // given
         const paletteIcon = domQuery(Object.keys(CANVAS_EVENTS)[2]);
 
-        const spy = expectEvent('canvas.palette.click', 'data-action', paletteIcon);
+        const spy = expectEvent('canvas.palette.click', 'action', paletteIcon);
 
         bpmnJSTracking.on('tracking.event', spy);
 
@@ -55,7 +55,7 @@ describe('CanvasTracking', function() {
         // given
         const paletteIcon = domQuery(Object.keys(CANVAS_EVENTS)[2]);
 
-        const spy = expectEvent('canvas.palette.dragstart', 'data-action', paletteIcon);
+        const spy = expectEvent('canvas.palette.dragstart', 'action', paletteIcon);
 
         bpmnJSTracking.on('tracking.event', spy);
 
@@ -84,7 +84,7 @@ describe('CanvasTracking', function() {
 
         const contextPad = domQuery(Object.keys(CANVAS_EVENTS)[0]);
 
-        const spy = expectEvent('canvas.contextPad.click', 'data-action', contextPad);
+        const spy = expectEvent('canvas.contextPad.click', 'action', contextPad);
 
         bpmnJSTracking.on('tracking.event', spy);
 
@@ -105,7 +105,7 @@ describe('CanvasTracking', function() {
 
         const contextPad = domQuery(Object.keys(CANVAS_EVENTS)[0]);
 
-        const spy = expectEvent('canvas.contextPad.dragstart', 'data-action', contextPad);
+        const spy = expectEvent('canvas.contextPad.dragstart', 'action', contextPad);
 
         bpmnJSTracking.on('tracking.event', spy);
 
@@ -129,7 +129,7 @@ describe('CanvasTracking', function() {
 
         const popupMenu = domQuery(Object.keys(CANVAS_EVENTS)[1]);
 
-        const spy = expectEvent('canvas.popupMenu.click', 'data-id', popupMenu);
+        const spy = expectEvent('canvas.popupMenu.click', 'id', popupMenu);
 
         bpmnJSTracking.on('tracking.event', spy);
 
@@ -149,7 +149,7 @@ describe('CanvasTracking', function() {
 
         const popupMenu = domQuery(Object.keys(CANVAS_EVENTS)[1]);
 
-        const spy = expectEvent('canvas.popupMenu.dragstart', 'data-id', popupMenu);
+        const spy = expectEvent('canvas.popupMenu.dragstart', 'id', popupMenu);
 
         bpmnJSTracking.on('tracking.event', spy);
 
@@ -186,7 +186,7 @@ function expectEvent(name, dataType, element) {
     return sinon.spy(function(event) {
 
       if (event['name'] === name) {
-        expect(event[dataType]).to.eql(element.getAttribute(dataType));
+        expect(event[dataType]).to.eql(element.dataset[dataType]);
         expect(event['selection']).to.eql(selection.get());
       }
 
