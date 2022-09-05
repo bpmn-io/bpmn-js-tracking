@@ -1,20 +1,20 @@
 export const CANVAS_EVENTS = {
   '.djs-context-pad .entry': {
     eventName: 'canvas.contextPad',
-    dataType: 'data-action'
+    dataType: 'action'
   },
   '.djs-popup .entry': {
     eventName: 'canvas.popupMenu',
-    dataType: 'data-id'
+    dataType: 'id'
   },
   '.djs-palette-entries .entry': {
     eventName: 'canvas.palette',
-    dataType: 'data-action'
+    dataType: 'action'
   }
 };
 
 export default class CanvasTracking {
-  constructor(selection, canvas, eventBus, bpmnJSTracking) {
+  constructor(selection, canvas, bpmnJSTracking) {
     this._selection = selection;
     this._canvas = canvas;
     this._bpmnJSTracking = bpmnJSTracking;
@@ -33,9 +33,9 @@ export default class CanvasTracking {
         const canvasEvent = CANVAS_EVENTS[eventSelector];
         const { eventName, dataType } = canvasEvent;
 
-        payload['name'] = `${eventName}.${eventType}`;
-        payload[`${dataType}`] = element.getAttribute(dataType);
-        payload['selection'] = this._selection.get();
+        payload.name = `${eventName}.${eventType}`;
+        payload[dataType] = element.dataset[dataType];
+        payload.selection = this._selection.get();
 
         this._bpmnJSTracking.track(payload);
       }
@@ -49,7 +49,7 @@ export default class CanvasTracking {
   }
 }
 
-CanvasTracking.$inject = [ 'selection', 'canvas', 'eventBus','bpmnJSTracking' ];
+CanvasTracking.$inject = [ 'selection', 'canvas','bpmnJSTracking' ];
 
 // helpers ///////////////////////////////
 
