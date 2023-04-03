@@ -1,3 +1,5 @@
+> This extension is a work in progress.
+
 # bpmn-js-tracking
 
 An extension for [bpmn-js](https://github.com/bpmn-io/bpmn-js) to track user interaction.
@@ -24,26 +26,28 @@ const bpmnJS = new BpmnJS({
     BpmnJSTracking
   ]
 })
-```
-## Configuration
-Customize this extension via the bpmnJSTracking config:
 
-| Property | | Description |
-| :--- | :--- |:--- |
-| `track` | optional | Callback to send events to tracking tool |
+const bpmnJsTracking = bpmnJS.get('bpmnJsTracking');
+
+bpmnJsTracking.on('tracking.enabled', function(event) {
+  // opt into tracking platform
+});
+
+bpmnJsTracking.on('tracking.event', function(event) {
+  // send to tracking platform
+  // event: { name, data }
+});
+
+bpmnJsTracking.on('tracking.disabled', function(event) {
+  //  opt out of tracking platform
+});
+```
 
 ## Tracked events
-
-### Canvas Events
-
-| Event Name | Structure |
-| :--- | :--- |
-| `canvas.contextPad.click` <br> `canvas.contextPad.dragstart`| <ul><li>name</li><li>data-action</li><li>selection</li></ul>|
-| `canvas.palette.click` <br> `canvas.palette.dragstart`| <ul><li>name</li><li>data-action</li><li>selection</li></ul>|
-| `canvas.popupMenu.click` | <ul><li>name</li><li>data-id</li><li>selection</li></ul>|
 
 ### Diagram events
 
 | Event Name | Structure |
 | :--- | :--- |
-| `diagram.select`| <ul><li>name</li><li>oldSelection</li><li>newSelection</li></ul>|
+| `diagram.select`| <ul><li>oldSelection</li><li>newSelection</li></ul>|
+| | |
