@@ -33,9 +33,10 @@ describe('SelectionTracking', function() {
     const newSelection = elementRegistry.get('StartEvent_1');
 
     const spy = sinon.spy(function(event) {
-      expect(event.name).to.eql('diagram.select');
-      expect(event.newSelection).to.eql([ newSelection ]);
-      expect(event.oldSelection).to.eql([]);
+      const { name, data } = event;
+      expect(name).to.eql('diagram.select');
+      expect(data.newSelection).to.eql([ newSelection ]);
+      expect(data.oldSelection).to.eql([]);
     });
 
     bpmnJSTracking.on('tracking.event', spy);

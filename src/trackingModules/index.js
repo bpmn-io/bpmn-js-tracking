@@ -1,11 +1,7 @@
-import CanvasTracking from './CanvasTracking';
-import SelectionTracking from './SelectionTracking';
+import diagramTracking from './diagram';
 
 export default {
-  __init__: [
-    'canvasTracking',
-    'selectionTracking'
-  ],
-  canvasTracking: [ 'type', CanvasTracking ],
-  selectionTracking: [ 'type', SelectionTracking ]
+  __depends__: [
+    diagramTracking
+  ]
 };

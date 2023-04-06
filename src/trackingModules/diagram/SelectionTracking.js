@@ -7,13 +7,13 @@ export default class SelectionTracking {
   }
 
   trackEvent(event) {
-    const payload = {
-      oldSelection: event.oldSelection,
-      newSelection: event.newSelection,
-      name: 'diagram.select'
-    };
-
-    this._bpmnJSTracking.track(payload);
+    this._bpmnJSTracking.track({
+      name: 'diagram.select',
+      data: {
+        oldSelection: event.oldSelection,
+        newSelection: event.newSelection
+      }
+    });
   }
 }
 
