@@ -45,6 +45,7 @@ describe('BpmnJSTracking', function() {
 
     // then
     expect(modeler.get('selectionTracking')).to.exists;
+    expect(modeler.get('popupMenuTracking')).to.exists;
   });
 
 
