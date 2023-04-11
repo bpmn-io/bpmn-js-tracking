@@ -43,6 +43,19 @@ bpmnJsTracking.on('tracking.disabled', function(event) {
 });
 ```
 
+[Tracking modules](https://github.com/bpmn-io/bpmn-js-tracking/tree/main/src/trackingModules) may be whitelisted or blacklisted by passing a `whitelist`/`blacklist` option when initializing BpmnJS. If neither is provided, all modules are enabled.
+
+```javascript
+new BpmnJS({
+  additionalModules: [
+    BpmnJSTracking
+  ],
+  bpmnJsTracking: {
+    whitelist: [ 'popupMenuTracking' ]
+  }
+})
+```
+
 ## Tracked events
 
 ### Diagram events

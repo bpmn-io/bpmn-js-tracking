@@ -1,9 +1,13 @@
+import { isTrackingModuleEnabled } from '../Util';
+
 export default class SelectionTracking {
-  constructor(eventBus, bpmnJSTracking) {
+  constructor(eventBus, bpmnJSTracking, config) {
     this._eventBus = eventBus;
     this._bpmnJSTracking = bpmnJSTracking;
 
-    this._eventBus.on('selection.changed', this.trackEvent.bind(this));
+    if (isTrackingModuleEnabled(config, 'selectionTracking')) {
+      this._eventBus.on('selection.changed', this.trackEvent.bind(this));
+    }
   }
 
   trackEvent(event) {
@@ -17,4 +21,4 @@ export default class SelectionTracking {
   }
 }
 
-SelectionTracking.$inject = [ 'eventBus','bpmnJSTracking' ];
+SelectionTracking.$inject = [ 'eventBus','bpmnJSTracking', 'config.bpmnJSTracking' ];
