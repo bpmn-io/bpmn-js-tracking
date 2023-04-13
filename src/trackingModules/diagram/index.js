@@ -1,8 +1,7 @@
-import SelectionTracking from './SelectionTracking';
+import selectionTracking from './selection';
 
 export default {
-  __init__: [
-    'selectionTracking'
-  ],
-  selectionTracking: [ 'type', SelectionTracking ]
+  __depends__: [
+    selectionTracking
+  ]
 };

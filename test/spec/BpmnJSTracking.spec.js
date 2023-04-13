@@ -6,7 +6,8 @@ import {
 
 import { injectStyles } from '../TestHelper';
 
-import BpmnJSTracking from 'src';
+import BpmnJSTracking from 'src/BpmnJSTracking';
+import BpmnJSTrackingModules from 'src/trackingModules';
 
 var singleStart = window.__env__ && window.__env__.SINGLE_START;
 
@@ -19,7 +20,8 @@ describe('BpmnJSTracking', function() {
 
   beforeEach(bootstrapModeler(diagram, {
     additionalModules: [
-      BpmnJSTracking
+      BpmnJSTracking,
+      BpmnJSTrackingModules
     ]
   }));
 
@@ -33,6 +35,16 @@ describe('BpmnJSTracking', function() {
     // then
     expect(trackingService).to.not.be.undefined;
 
+  });
+
+
+  it('should inject tracking modules', function() {
+
+    // given
+    const modeler = getBpmnJS();
+
+    // then
+    expect(modeler.get('selectionTracking')).to.exists;
   });
 
 

@@ -1,5 +1,5 @@
 
-export default class BpmnJSTracking {
+class BpmnJSTracking {
 
   constructor(config, eventBus) {
     this._eventBus = eventBus;
@@ -40,4 +40,11 @@ BpmnJSTracking.prototype.track = function(event) {
   if (this.isEnabled()) {
     this._eventBus.fire('tracking.event', event);
   }
+};
+
+export default {
+  __init__: [
+    'bpmnJSTracking'
+  ],
+  bpmnJSTracking: [ 'type', BpmnJSTracking ]
 };

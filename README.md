@@ -19,11 +19,15 @@ npm install bpmn-js-tracking
 Add as additional module to [bpmn-js](https://github.com/bpmn-io/bpmn-js).
 
 ```javascript
-import BpmnJSTracking from 'bpmn-js-tracking';
+import {
+  BpmnJSTracking,
+  BpmnJSTrackingModules
+ } from 'bpmn-js-tracking';
 
 const bpmnJS = new BpmnJS({
   additionalModules: [
-    BpmnJSTracking
+    BpmnJSTracking,
+    BpmnJSTrackingModules
   ]
 })
 

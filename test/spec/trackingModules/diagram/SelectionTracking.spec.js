@@ -4,7 +4,8 @@ import {
   inject
 } from 'bpmn-js/test/helper';
 
-import BpmnJSTracking from 'src';
+import BpmnJSTracking from 'src/BpmnJSTracking';
+import SelectionTracking from 'src/trackingModules/diagram/selection';
 
 
 describe('SelectionTracking', function() {
@@ -14,7 +15,8 @@ describe('SelectionTracking', function() {
 
   beforeEach(bootstrapModeler(diagram, {
     additionalModules: [
-      BpmnJSTracking
+      BpmnJSTracking,
+      SelectionTracking
     ]
   }));
 
