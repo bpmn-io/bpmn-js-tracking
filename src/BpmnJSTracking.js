@@ -28,19 +28,18 @@ class BpmnJSTracking {
     this._eventBus.fire('tracking.disabled');
   }
 
+  on(...args) {
+    return this._eventBus.on(...args);
+  }
+
+  track(event) {
+    if (this.isEnabled()) {
+      this._eventBus.fire('tracking.event', event);
+    }
+  }
 }
 
 BpmnJSTracking.$inject = [ 'config.bpmnJSTracking', 'eventBus' ];
-
-BpmnJSTracking.prototype.on = function(event, priority, callback, target) {
-  return this._eventBus.on(event, priority, callback, target);
-};
-
-BpmnJSTracking.prototype.track = function(event) {
-  if (this.isEnabled()) {
-    this._eventBus.fire('tracking.event', event);
-  }
-};
 
 export default {
   __init__: [
