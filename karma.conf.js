@@ -55,19 +55,24 @@ module.exports = function(karma) {
           {
             test: /\.(css|bpmn|svg)$/,
             use: 'raw-loader'
-          }
-        ].concat(coverage ?
+          },
           {
-            test: /\.js$/,
+            test: /\.m?js$/,
+            exclude: /node_modules/,
             use: {
-              loader: 'istanbul-instrumenter-loader',
-              options: { esModules: true }
-            },
-            enforce: 'post',
-            include: /src\.*/,
-            exclude: /node_modules/
-          } : []
-        )
+              loader: 'babel-loader',
+              options: {
+                plugins: coverage ? [
+                  [ 'istanbul', {
+                    include: [
+                      'src/**'
+                    ]
+                  } ]
+                ] : []
+              }
+            }
+          }
+        ]
       },
       devtool: 'eval-source-map'
     }
