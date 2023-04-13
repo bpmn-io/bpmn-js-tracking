@@ -32,9 +32,14 @@ describe('BpmnJSTracking', function() {
     const trackingService = getBpmnJS().get('bpmnJSTracking');
     trackingService.enable();
 
-    // then
-    expect(trackingService).to.not.be.undefined;
+    if (singleStart) {
+      trackingService.on('tracking.event', function(event) {
+        console.log('tracking.event', event);
+      });
+    }
 
+    // then
+    expect(trackingService).to.exist;
   });
 
 
