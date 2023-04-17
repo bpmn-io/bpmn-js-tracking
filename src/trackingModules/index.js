@@ -1,11 +1,9 @@
-import controlsTracking from './controls/popupMenu';
-import diagramTracking from './diagram';
 import popupMenuTracking from './popupMenu';
+import selectionTracking from './selection';
 
 export default {
   __depends__: [
-    controlsTracking,
-    diagramTracking
     popupMenuTracking,
+    selectionTracking
   ]
 };

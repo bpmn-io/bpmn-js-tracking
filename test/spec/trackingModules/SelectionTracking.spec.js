@@ -5,7 +5,7 @@ import {
 } from 'bpmn-js/test/helper';
 
 import BpmnJSTracking from 'src/BpmnJSTracking';
-import SelectionTracking from 'src/trackingModules/diagram/selection';
+import SelectionTracking from 'src/trackingModules/selection';
 
 
 describe('SelectionTracking', function() {
@@ -36,7 +36,7 @@ describe('SelectionTracking', function() {
 
     const spy = sinon.spy(function(event) {
       const { name, data } = event;
-      expect(name).to.eql('diagram.select');
+      expect(name).to.eql('selection.select');
       expect(data.newSelection).to.eql([ newSelection ]);
       expect(data.oldSelection).to.eql([]);
     });

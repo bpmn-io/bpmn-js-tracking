@@ -8,7 +8,7 @@ export default class SelectionTracking {
 
   trackEvent(event) {
     this._bpmnJSTracking.track({
-      name: 'diagram.select',
+      name: 'selection.select',
       data: {
         oldSelection: event.oldSelection,
         newSelection: event.newSelection
