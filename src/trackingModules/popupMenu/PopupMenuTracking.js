@@ -1,4 +1,4 @@
-import { getEventType } from '../../Util';
+import { getEventType } from '../Util';
 
 export default class PopupMenuTracking {
   constructor(eventBus, bpmnJSTracking, selection) {
@@ -12,7 +12,7 @@ export default class PopupMenuTracking {
 
   trackOpen() {
     this._bpmnJSTracking.track({
-      name: 'controls.popupMenu.open',
+      name: 'popupMenu.open',
       data: {
         selection: this._selection.get(),
       }
@@ -25,7 +25,7 @@ export default class PopupMenuTracking {
     const type = getEventType(event);
 
     this._bpmnJSTracking.track({
-      name: 'controls.popupMenu.trigger',
+      name: 'popupMenu.trigger',
       data: {
         entryLabel: entry.label,
         triggerType: type

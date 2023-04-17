@@ -10,7 +10,7 @@ import {
 
 
 import { BpmnJSTracking } from 'src';
-import PopupMenuTracking from 'src/trackingModules/controls/popupMenu';
+import PopupMenuTracking from 'src/trackingModules/popupMenu';
 
 
 describe('PopupMenuTracking', function() {
@@ -75,7 +75,7 @@ describe('PopupMenuTracking', function() {
 
       const spy = sinon.spy(function(event) {
         const { name, data } = event;
-        expect(name).to.eql('controls.popupMenu.open');
+        expect(name).to.eql('popupMenu.open');
         expect(data.selection).to.eql([ shape ]);
       });
 
@@ -97,7 +97,7 @@ describe('PopupMenuTracking', function() {
       selection.select(shape);
 
       const spy = sinon.spy(function(event) {
-        if (event === 'controls.popupMenu.trigger') {
+        if (event === 'popupMenu.trigger') {
           const { data } = event;
           expect(data.entryLabel).to.eql('Intermediate Throw Event');
           expect(data.triggerType).to.eql('click');
@@ -112,7 +112,7 @@ describe('PopupMenuTracking', function() {
 
       // then
       expect(spy).to.have.been.called;
-      expect(spy.getCalls()[1].args[1].name).to.eql('controls.popupMenu.trigger');
+      expect(spy.getCalls()[1].args[1].name).to.eql('popupMenu.trigger');
     }));
 
   });
