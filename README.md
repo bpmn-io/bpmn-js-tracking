@@ -54,7 +54,7 @@ bpmnJsTracking.on('tracking.disabled', function(event) {
 | Event Name | Structure |
 | :--- | :--- |
 | `popupMenu.open`| <ul><li>selection</li></ul>|
-| `popupMenu.trigger`| <ul><li>triggerType: ["click", "drag", "keyboard"]</li><li>entryLabel</li></ul>|
+| `popupMenu.trigger`| <ul><li>entryId</li><li>entryGroup</li><li>entryLabel</li><li>triggerType: ["click", "drag", "keyboard"]</li></ul>|
 
 ### Selection events
 

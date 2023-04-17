@@ -97,8 +97,10 @@ describe('PopupMenuTracking', function() {
       selection.select(shape);
 
       const spy = sinon.spy(function(event) {
-        if (event === 'popupMenu.trigger') {
+        if (event.name === 'popupMenu.trigger') {
           const { data } = event;
+          expect(data.entryId).to.eql('replace-with-none-intermediate-throwing');
+          expect(data.entryGroup).to.eql('default');
           expect(data.entryLabel).to.eql('Intermediate Throw Event');
           expect(data.triggerType).to.eql('click');
         }
