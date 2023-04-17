@@ -22,11 +22,17 @@ export default class PopupMenuTracking {
   trackTrigger(e) {
     const { entry, event } = e;
 
+    const { target } = event;
+
     const type = getEventType(event);
+
+    const entryId = target.getAttribute('data-id');
 
     this._bpmnJSTracking.track({
       name: 'popupMenu.trigger',
       data: {
+        entryId,
+        entryGroup: entry.group || 'default',
         entryLabel: entry.label,
         triggerType: type
       }
