@@ -49,6 +49,11 @@ bpmnJsTracking.on('tracking.disabled', function(event) {
 
 ## Tracked events
 
+### Palette events
+
+| Event Name | Structure |
+| :--- | :--- |
+| `palette.trigger`| <ul><li>entryId</li><li>entryGroup</li><li>entryTitle</li><li>selection</li><li>triggerType: ["click", "drag", "keyboard"]</li></ul>|
 ### Popup menu events
 
 | Event Name | Structure |
