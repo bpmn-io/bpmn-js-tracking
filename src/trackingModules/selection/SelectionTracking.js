@@ -17,4 +17,4 @@ export default class SelectionTracking {
   }
 }
 
-SelectionTracking.$inject = [ 'eventBus','bpmnJSTracking' ];
+SelectionTracking.$inject = [ 'eventBus', 'bpmnJSTracking' ];
