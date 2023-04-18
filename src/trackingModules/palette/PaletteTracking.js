@@ -1,6 +1,6 @@
 import { getEventType } from '../Util';
 
-export default class Palette {
+export default class PaletteTracking {
   constructor(eventBus, bpmnJSTracking, selection) {
     this._eventBus = eventBus;
     this._bpmnJSTracking = bpmnJSTracking;
@@ -30,7 +30,7 @@ export default class Palette {
   }
 }
 
-Palette.$inject = [
+PaletteTracking.$inject = [
   'eventBus',
   'bpmnJSTracking',
   'selection'

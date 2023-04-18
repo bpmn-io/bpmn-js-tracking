@@ -9,7 +9,7 @@ import {
 
 
 import { BpmnJSTracking } from 'src';
-import PopupMenuTracking from 'src/trackingModules/palette';
+import PaletteTracking from 'src/trackingModules/palette';
 
 
 describe('PaletteMenuTracking', function() {
@@ -19,14 +19,14 @@ describe('PaletteMenuTracking', function() {
   beforeEach(bootstrapModeler(diagram, {
     additionalModules: [
       BpmnJSTracking,
-      PopupMenuTracking
+      PaletteTracking
     ]
   }));
 
 
   describe('should subscribe', function() {
 
-    it('popupMenu.trigger', inject(function(bpmnJSTracking, palette) {
+    it('palette.trigger', inject(function(bpmnJSTracking, palette) {
 
       // given
       const spy = sinon.spy(bpmnJSTracking, 'track');
@@ -49,7 +49,7 @@ describe('PaletteMenuTracking', function() {
       bpmnJSTracking.enable();
     }));
 
-    it('popup menu trigger entry', inject(function(elementRegistry, selection, bpmnJSTracking) {
+    it('palette trigger entry', inject(function(elementRegistry, selection, bpmnJSTracking) {
 
       // given
       const element = elementRegistry.get('StartEvent_1');
