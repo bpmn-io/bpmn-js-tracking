@@ -137,7 +137,7 @@ function triggerContextPad(shape, entry, action) {
 function triggerPopupMenu(entryId) {
 
   const popupMenu = domQuery('.djs-popup', document.body);
-  const entry = domQuery(`[data-id="${entryId}"]`, popupMenu);
+  const entry = domQuery(`[data-id="${entryId}"] .djs-popup-label`, popupMenu);
 
   entry.click();
 }
