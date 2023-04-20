@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "build": "rollup -c",
     "build:watch": "rollup -cw",
-    "start": "SINGLE_START=true npm run dev",
+    "start": "cross-env SINGLE_START=true npm run dev",
     "test": "karma start",
     "dev": "npm test -- --auto-watch --no-single-run"
   },
