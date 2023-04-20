@@ -22,7 +22,7 @@ export default class PopupMenuTracking {
   trackTrigger(e) {
     const { entry, event } = e;
 
-    const { target } = event;
+    const target = event.target.closest('li.entry');
 
     const type = getEventType(event);
 
