@@ -55,6 +55,14 @@ bpmnJsTracking.on('tracking.disabled', function(event) {
 | :--- | :--- |
 | `contextPad.trigger`| <ul><li>entryId</li><li>entryGroup</li><li>entryTitle</li><li>selection</li><li>triggerType: ["click", "drag", "keyboard"]</li></ul>|
 
+### Modeling events
+
+| Event Name | Structure |
+| :--- | :--- |
+| `modeling.appendElement`| <ul><li>element</li><li>sourceElement</li></ul>|
+| `modeling.createElements`| <ul><li>elements</li></ul>|
+| `modeling.replaceElement`| <ul><li>oldElement</li><li>newElement</li></ul>|
+
 ### Palette events
 
 | Event Name | Structure |
