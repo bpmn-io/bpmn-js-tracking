@@ -1,5 +1,5 @@
 {
-  "name": "@bpmn-io/bpmn-js-tracking",
+  "name": "bpmn-js-tracking",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
