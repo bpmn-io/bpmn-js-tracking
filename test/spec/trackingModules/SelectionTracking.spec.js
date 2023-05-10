@@ -4,8 +4,8 @@ import {
   inject
 } from 'bpmn-js/test/helper';
 
-import BpmnJSTracking from 'src/BpmnJSTracking';
-import SelectionTracking from 'src/trackingModules/selection';
+import BpmnJSTracking from 'lib/BpmnJSTracking';
+import SelectionTracking from 'lib/trackingModules/selection';
 
 
 describe('SelectionTracking', function() {

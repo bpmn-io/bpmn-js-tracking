@@ -8,8 +8,8 @@ import {
   query as domQuery
 } from 'min-dom';
 
-import { BpmnJSTracking } from 'src';
-import ContextPadTracking from 'src/trackingModules/contextPad';
+import { BpmnJSTracking } from 'lib';
+import ContextPadTracking from 'lib/trackingModules/contextPad';
 
 
 describe('ContextPadTracking', function() {

@@ -8,8 +8,8 @@ import {
 } from 'min-dom';
 
 
-import { BpmnJSTracking } from 'src';
-import PaletteTracking from 'src/trackingModules/palette';
+import { BpmnJSTracking } from 'lib';
+import PaletteTracking from 'lib/trackingModules/palette';
 
 
 describe('PaletteMenuTracking', function() {

@@ -65,7 +65,7 @@ module.exports = function(karma) {
                 plugins: coverage ? [
                   [ 'istanbul', {
                     include: [
-                      'src/**'
+                      'lib/**'
                     ]
                   } ]
                 ] : []

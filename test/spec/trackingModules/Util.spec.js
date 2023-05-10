@@ -1,6 +1,6 @@
 import {
   getEventType
-} from 'src/trackingModules/Util';
+} from 'lib/trackingModules/Util';
 
 
 describe('Util', function() {

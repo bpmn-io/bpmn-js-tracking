@@ -9,8 +9,8 @@ import {
 } from 'min-dom';
 
 
-import { BpmnJSTracking } from 'src';
-import PopupMenuTracking from 'src/trackingModules/popupMenu';
+import { BpmnJSTracking } from 'lib';
+import PopupMenuTracking from 'lib/trackingModules/popupMenu';
 
 
 describe('PopupMenuTracking', function() {
