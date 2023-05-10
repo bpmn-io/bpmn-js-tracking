@@ -4,8 +4,8 @@ import {
   getBpmnJS
 } from 'test/TestHelper';
 
-import { BpmnJSTracking } from 'src';
-import ModelingTracking from 'src/trackingModules/modeling';
+import { BpmnJSTracking } from 'lib';
+import ModelingTracking from 'lib/trackingModules/modeling';
 
 
 describe('ModelingTracking', function() {

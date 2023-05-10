@@ -6,8 +6,8 @@ import {
 
 import { injectStyles } from '../TestHelper';
 
-import BpmnJSTracking from 'src/BpmnJSTracking';
-import BpmnJSTrackingModules from 'src/trackingModules';
+import BpmnJSTracking from 'lib/BpmnJSTracking';
+import BpmnJSTrackingModules from 'lib/trackingModules';
 
 var singleStart = window.__env__ && window.__env__.SINGLE_START;
 
