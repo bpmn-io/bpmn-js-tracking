@@ -5,7 +5,7 @@ import {
 } from 'bpmn-js/test/helper';
 
 import BpmnJSTracking from 'lib/BpmnJSTracking';
-import SelectionTracking from 'lib/trackingModules/selection';
+import SelectionTracking from 'lib/features/selection';
 
 
 describe('SelectionTracking', function() {

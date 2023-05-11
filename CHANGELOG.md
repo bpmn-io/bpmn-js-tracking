@@ -10,6 +10,7 @@ ___Note:__ Yet to be released changes appear here._
 
 * `FIX`: correctly retrieve entry id from `popupMenu.trigger` events ([#23](https://github.com/bpmn-io/bpmn-js-tracking/pull/23))
 * `CHORE`: do not bundle library ([#24](https://github.com/bpmn-io/bpmn-js-tracking/pull/24))
+* `CHORE`: rename `trackingModules` dir to `features` ([#26](https://github.com/bpmn-io/bpmn-js-tracking/pull/26))
 * `DEPS`: update to `bpmn-js@13.0.5`
 
 ### Breaking Changes
