@@ -5,7 +5,7 @@ import {
 } from 'test/TestHelper';
 
 import { BpmnJSTracking } from 'lib';
-import ModelingTracking from 'lib/trackingModules/modeling';
+import ModelingTracking from 'lib/features/modeling';
 
 
 describe('ModelingTracking', function() {

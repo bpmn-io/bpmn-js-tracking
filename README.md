@@ -47,6 +47,12 @@ bpmnJsTracking.on('tracking.disabled', function(event) {
 });
 ```
 
+Alternatively, you can import specific tracking modules:
+
+```javascript
+import popupMenuTracking from 'bpmn-js-tracking/lib/features/popup-menu';
+```
+
 ## Tracked events
 
 ### Context pad events

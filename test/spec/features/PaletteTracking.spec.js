@@ -9,7 +9,7 @@ import {
 
 
 import { BpmnJSTracking } from 'lib';
-import PaletteTracking from 'lib/trackingModules/palette';
+import PaletteTracking from 'lib/features/palette';
 
 
 describe('PaletteMenuTracking', function() {
