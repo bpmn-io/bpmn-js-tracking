@@ -9,7 +9,7 @@ import {
 } from 'min-dom';
 
 import { BpmnJSTracking } from 'lib';
-import ContextPadTracking from 'lib/features/contextPad';
+import ContextPadTracking from 'lib/features/context-pad';
 
 
 describe('ContextPadTracking', function() {
