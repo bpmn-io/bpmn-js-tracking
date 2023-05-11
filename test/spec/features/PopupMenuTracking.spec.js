@@ -10,7 +10,7 @@ import {
 
 
 import { BpmnJSTracking } from 'lib';
-import PopupMenuTracking from 'lib/features/popupMenu';
+import PopupMenuTracking from 'lib/features/popup-menu';
 
 
 describe('PopupMenuTracking', function() {
