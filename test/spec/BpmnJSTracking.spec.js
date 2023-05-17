@@ -1,13 +1,17 @@
 import {
   bootstrapModeler,
   getBpmnJS,
-  inject
-} from 'bpmn-js/test/helper';
-
-import { injectStyles } from '../TestHelper';
+  inject,
+  bootstrapPropertiesPanel
+} from '../TestHelper';
 
 import BpmnJSTracking from 'lib/BpmnJSTracking';
 import BpmnJSTrackingModules from 'lib/features';
+
+import {
+  BpmnPropertiesPanelModule,
+  BpmnPropertiesProviderModule
+} from 'bpmn-js-properties-panel';
 
 var singleStart = window.__env__ && window.__env__.SINGLE_START;
 
@@ -16,10 +20,10 @@ describe('BpmnJSTracking', function() {
 
   const diagram = require('./simple.bpmn').default;
 
-  injectStyles();
-
-  beforeEach(bootstrapModeler(diagram, {
+  beforeEach(bootstrapPropertiesPanel(diagram, {
     additionalModules: [
+      BpmnPropertiesPanelModule,
+      BpmnPropertiesProviderModule,
       BpmnJSTracking,
       BpmnJSTrackingModules
     ]
@@ -30,6 +34,7 @@ describe('BpmnJSTracking', function() {
 
     // given
     const trackingService = getBpmnJS().get('bpmnJSTracking');
+
     trackingService.enable();
 
     if (singleStart) {
