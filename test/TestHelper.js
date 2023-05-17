@@ -1,11 +1,18 @@
 export * from 'bpmn-js/test/helper';
 
 import {
-  insertCSS
+  insertCSS,
+  bootstrapBpmnJS,
+  inject
 } from 'bpmn-js/test/helper';
+
+import Modeler from 'bpmn-js/lib/Modeler';
 
 import semver from 'semver';
 
+import TestContainer from 'mocha-test-container-support';
+
+let PROPERTIES_PANEL_CONTAINER;
 
 export function injectStyles() {
 
@@ -24,6 +31,21 @@ export function injectStyles() {
   insertCSS(
     'bpmn-font.css',
     require('bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css').default
+  );
+
+  insertCSS(
+    'test.css',
+    require('./test.css').default
+  );
+
+  insertCSS(
+    'properties-panel.css',
+    require('@bpmn-io/properties-panel/assets/properties-panel.css').default
+  );
+
+  insertCSS(
+    'element-templates.css',
+    require('bpmn-js-properties-panel/dist/assets/element-templates.css').default
   );
 }
 
@@ -45,4 +67,44 @@ function bpmnJsSatisfies(versionRange) {
   const bpmnJsVersion = require('bpmn-js/package.json').version;
 
   return semver.satisfies(bpmnJsVersion, versionRange, { includePrerelease: true });
+}
+
+export function bootstrapPropertiesPanel(diagram, options, locals) {
+  return async function() {
+    const container = TestContainer.get(this);
+
+    injectStyles();
+
+    // (1) create modeler + import diagram
+    const createModeler = bootstrapBpmnJS(Modeler, diagram, options, locals);
+
+    await createModeler.call(this);
+
+    // (2) clean-up properties panel
+    clearPropertiesPanelContainer();
+
+    // (3) attach properties panel
+    const attachPropertiesPanel = inject(async function(propertiesPanel) {
+      PROPERTIES_PANEL_CONTAINER = document.createElement('div');
+      PROPERTIES_PANEL_CONTAINER.classList.add('properties-container');
+
+      container.appendChild(PROPERTIES_PANEL_CONTAINER);
+
+      return propertiesPanel.attachTo(PROPERTIES_PANEL_CONTAINER);
+    });
+
+    await whenStable(50);
+    await attachPropertiesPanel();
+  };
+}
+
+
+export function clearPropertiesPanelContainer() {
+  if (PROPERTIES_PANEL_CONTAINER) {
+    PROPERTIES_PANEL_CONTAINER.remove();
+  }
+}
+
+export function whenStable(timeout = 50) {
+  return new Promise(resolve => setTimeout(resolve, timeout));
 }
