@@ -59,6 +59,15 @@ import popupMenuTracking from 'bpmn-js-tracking/lib/features/popup-menu';
 | :--- | :--- |
 | `contextPad.trigger`| <ul><li>entryId</li><li>entryGroup</li><li>entryTitle</li><li>selection</li><li>triggerType: ["click", "drag", "keyboard"]</li></ul>|
 
+### Element templates events
+
+| Event Name | Structure |
+| :--- | :--- |
+| `elementTemplates.select`| <ul><li>element</li></ul>|
+| `elementTemplates.update`| <ul><li>element</li><li>newTemplate</li></ul>|
+| `elementTemplates.remove`| <ul><li>element</li></ul>|
+| `elementTemplates.unlink`| <ul><li>element</li></ul>|
+
 ### Modeling events
 
 | Event Name | Structure |
