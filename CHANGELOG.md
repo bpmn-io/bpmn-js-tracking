@@ -6,6 +6,11 @@ All notable changes to [@bpmn-io/bpmn-js-tracking](https://github.com/bpmn-io/bp
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.3.0
+
+* `FEAT`: handle invalid events ([#27](https://github.com/bpmn-io/bpmn-js-tracking/pull/27))
+* `FEAT`: add tracking for `elementTemplates.select`, `elementTemplates.update`, `elementTemplates.remove`, `elementTemplates.unlink` events ([#29](https://github.com/bpmn-io/bpmn-js-tracking/pull/29))
+
 ## 0.2.0
 
 * `FIX`: correctly retrieve entry id from `popupMenu.trigger` events ([#23](https://github.com/bpmn-io/bpmn-js-tracking/pull/23))

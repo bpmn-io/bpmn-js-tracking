@@ -1,5 +1,3 @@
-> This extension is a work in progress.
-
 # bpmn-js-tracking
 
 An extension for [bpmn-js](https://github.com/bpmn-io/bpmn-js) to track user interaction.
