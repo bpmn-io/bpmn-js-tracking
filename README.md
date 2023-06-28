@@ -29,7 +29,7 @@ const bpmnJS = new BpmnJS({
   ]
 })
 
-const bpmnJsTracking = bpmnJS.get('bpmnJsTracking');
+const bpmnJsTracking = bpmnJS.get('bpmnJSTracking');
 
 bpmnJsTracking.on('tracking.enabled', function(event) {
   // opt into tracking platform
