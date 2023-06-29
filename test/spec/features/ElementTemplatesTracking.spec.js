@@ -27,7 +27,7 @@ import {
 
 describe('ElementTemplatesTracking', function() {
 
-  const diagramXML = require('../simple.bpmn').default;
+  const diagramXML = require('./ElementTemplatesTracking.bpmn').default;
 
   beforeEach(bootstrapPropertiesPanel(diagramXML, {
     additionalModules: [
