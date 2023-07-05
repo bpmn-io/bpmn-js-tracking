@@ -13,6 +13,11 @@ import {
   BpmnPropertiesProviderModule
 } from 'bpmn-js-properties-panel';
 
+import {
+  CreateAppendAnythingModule
+} from 'bpmn-js-create-append-anything';
+
+
 var singleStart = window.__env__ && window.__env__.SINGLE_START;
 
 
@@ -25,7 +30,8 @@ describe('BpmnJSTracking', function() {
       BpmnPropertiesPanelModule,
       BpmnPropertiesProviderModule,
       BpmnJSTracking,
-      BpmnJSTrackingModules
+      BpmnJSTrackingModules,
+      CreateAppendAnythingModule
     ]
   }));
 
