@@ -10,6 +10,7 @@ import {
 
 import { BpmnJSTracking } from 'lib';
 import PaletteTracking from 'lib/features/palette';
+import { CreateAppendAnythingModule } from 'bpmn-js-create-append-anything';
 
 
 describe('PaletteMenuTracking', function() {
@@ -19,7 +20,8 @@ describe('PaletteMenuTracking', function() {
   beforeEach(bootstrapModeler(diagram, {
     additionalModules: [
       BpmnJSTracking,
-      PaletteTracking
+      PaletteTracking,
+      CreateAppendAnythingModule
     ]
   }));
 
@@ -75,6 +77,34 @@ describe('PaletteMenuTracking', function() {
       });
     }));
 
+
+    it('get closest "data-action"', inject(function(elementRegistry, selection, bpmnJSTracking) {
+
+      // given
+      const element = elementRegistry.get('StartEvent_1');
+      selection.select(element);
+
+      const spy = sinon.spy();
+      bpmnJSTracking.on('tracking.event', spy);
+
+      // when
+      const icon = domQuery('.djs-palette [data-action="create"] svg');
+      dispatchClick(icon);
+
+      // then
+      expect(spy).to.have.been.called;
+      expect(spy.getCalls()[0].args[1]).to.eql({
+        name: 'palette.trigger',
+        data: {
+          entryId: 'create',
+          entryGroup: 'create',
+          entryTitle: 'Create element',
+          selection: [ element ],
+          triggerType: 'click'
+        }
+      });
+    }));
+
   });
 
 });
@@ -98,3 +128,12 @@ function getPaletteEvent(entryId) {
     clientY: 100
   };
 }
+
+const dispatchClick = target => {
+  const ev = new PointerEvent('click', {
+    view: window,
+    bubbles: true,
+    cancelable: true
+  });
+  target.dispatchEvent(ev);
+};

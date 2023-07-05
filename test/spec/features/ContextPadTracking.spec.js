@@ -11,6 +11,7 @@ import {
 import { BpmnJSTracking } from 'lib';
 import ContextPadTracking from 'lib/features/context-pad';
 
+import { CreateAppendAnythingModule } from 'bpmn-js-create-append-anything';
 
 describe('ContextPadTracking', function() {
 
@@ -19,7 +20,8 @@ describe('ContextPadTracking', function() {
   beforeEach(bootstrapModeler(diagram, {
     additionalModules: [
       BpmnJSTracking,
-      ContextPadTracking
+      ContextPadTracking,
+      CreateAppendAnythingModule
     ]
   }));
 
@@ -75,6 +77,34 @@ describe('ContextPadTracking', function() {
       });
     }));
 
+
+    it('get closest "data-action"', inject(function(elementRegistry, selection, bpmnJSTracking) {
+
+      // given
+      const element = elementRegistry.get('StartEvent_1');
+      selection.select(element);
+
+      const spy = sinon.spy();
+      bpmnJSTracking.on('tracking.event', spy);
+
+      // when
+      const icon = domQuery('.djs-context-pad [data-action="append"] svg');
+      dispatchClick(icon);
+
+      // then
+      expect(spy).to.have.been.called;
+      expect(spy.getCalls()[0].args[1]).to.eql({
+        name: 'contextPad.trigger',
+        data: {
+          entryId: 'append',
+          entryGroup: 'model',
+          entryTitle: 'Append element',
+          selection: [ element ],
+          triggerType: 'click'
+        }
+      });
+    }));
+
   });
 
 });
@@ -103,3 +133,12 @@ function getContextPadEvent(elementId, entryId) {
     };
   });
 }
+
+const dispatchClick = target => {
+  const ev = new PointerEvent('click', {
+    view: window,
+    bubbles: true,
+    cancelable: true
+  });
+  target.dispatchEvent(ev);
+};
