@@ -57,7 +57,19 @@ describe('PaletteMenuTracking', function() {
       const element = elementRegistry.get('StartEvent_1');
       selection.select(element);
 
-      const spy = sinon.spy();
+      const spy = sinon.spy(function(event) {
+        compareEvents(event, {
+          name: 'palette.trigger',
+          data: {
+            entryId: 'create.start-event',
+            entryGroup: 'event',
+            entryTitle: 'Create StartEvent',
+            selection: [ element ],
+            triggerType: 'click'
+          }
+        });
+      });
+
       bpmnJSTracking.on('tracking.event', spy);
 
       // when
@@ -65,16 +77,6 @@ describe('PaletteMenuTracking', function() {
 
       // then
       expect(spy).to.have.been.called;
-      expect(spy.getCalls()[0].args[1]).to.eql({
-        name: 'palette.trigger',
-        data: {
-          entryId: 'create.start-event',
-          entryGroup: 'event',
-          entryTitle: 'Create StartEvent',
-          selection: [ element ],
-          triggerType: 'click'
-        }
-      });
     }));
 
 
@@ -84,7 +86,19 @@ describe('PaletteMenuTracking', function() {
       const element = elementRegistry.get('StartEvent_1');
       selection.select(element);
 
-      const spy = sinon.spy();
+      const spy = sinon.spy(function(event) {
+        compareEvents(event, {
+          name: 'palette.trigger',
+          data: {
+            entryId: 'create',
+            entryGroup: 'create',
+            entryTitle: 'Create element',
+            selection: [ element ],
+            triggerType: 'click'
+          }
+        });
+      });
+
       bpmnJSTracking.on('tracking.event', spy);
 
       // when
@@ -93,16 +107,6 @@ describe('PaletteMenuTracking', function() {
 
       // then
       expect(spy).to.have.been.called;
-      expect(spy.getCalls()[0].args[1]).to.eql({
-        name: 'palette.trigger',
-        data: {
-          entryId: 'create',
-          entryGroup: 'create',
-          entryTitle: 'Create element',
-          selection: [ element ],
-          triggerType: 'click'
-        }
-      });
     }));
 
   });
@@ -136,4 +140,9 @@ const dispatchClick = target => {
     cancelable: true
   });
   target.dispatchEvent(ev);
+};
+
+const compareEvents = (event, expected) => {
+  return expect(event.name).to.eql(expected.name) &&
+          expect(JSON.stringify(event.data)).to.equal(JSON.stringify(expected.data));
 };

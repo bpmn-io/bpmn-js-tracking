@@ -57,7 +57,19 @@ describe('ContextPadTracking', function() {
       const element = elementRegistry.get('StartEvent_1');
       selection.select(element);
 
-      const spy = sinon.spy();
+      const spy = sinon.spy(function(event) {
+        compareEvents(event, {
+          name: 'contextPad.trigger',
+          data: {
+            entryId: 'replace',
+            entryGroup: 'edit',
+            entryTitle: 'Change type',
+            selection: [ element ],
+            triggerType: 'click'
+          }
+        });
+      });
+
       bpmnJSTracking.on('tracking.event', spy);
 
       // when
@@ -65,16 +77,6 @@ describe('ContextPadTracking', function() {
 
       // then
       expect(spy).to.have.been.called;
-      expect(spy.getCalls()[0].args[1]).to.eql({
-        name: 'contextPad.trigger',
-        data: {
-          entryId: 'replace',
-          entryGroup: 'edit',
-          entryTitle: 'Change type',
-          selection: [ element ],
-          triggerType: 'click'
-        }
-      });
     }));
 
 
@@ -84,7 +86,19 @@ describe('ContextPadTracking', function() {
       const element = elementRegistry.get('StartEvent_1');
       selection.select(element);
 
-      const spy = sinon.spy();
+      const spy = sinon.spy(function(event) {
+        compareEvents(event, {
+          name: 'contextPad.trigger',
+          data: {
+            entryId: 'append',
+            entryGroup: 'model',
+            entryTitle: 'Append element',
+            selection: [ element ],
+            triggerType: 'click'
+          }
+        });
+      });
+
       bpmnJSTracking.on('tracking.event', spy);
 
       // when
@@ -93,16 +107,6 @@ describe('ContextPadTracking', function() {
 
       // then
       expect(spy).to.have.been.called;
-      expect(spy.getCalls()[0].args[1]).to.eql({
-        name: 'contextPad.trigger',
-        data: {
-          entryId: 'append',
-          entryGroup: 'model',
-          entryTitle: 'Append element',
-          selection: [ element ],
-          triggerType: 'click'
-        }
-      });
     }));
 
   });
@@ -141,4 +145,9 @@ const dispatchClick = target => {
     cancelable: true
   });
   target.dispatchEvent(ev);
+};
+
+const compareEvents = (event, expected) => {
+  return expect(event.name).to.eql(expected.name) &&
+          expect(JSON.stringify(event.data)).to.equal(JSON.stringify(expected.data));
 };
