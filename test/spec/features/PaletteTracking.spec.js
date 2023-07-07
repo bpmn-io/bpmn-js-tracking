@@ -58,7 +58,7 @@ describe('PaletteMenuTracking', function() {
       selection.select(element);
 
       const spy = sinon.spy(function(event) {
-        compareEvents(event, {
+        expect(event).to.jsonEqual({
           name: 'palette.trigger',
           data: {
             entryId: 'create.start-event',
@@ -66,7 +66,8 @@ describe('PaletteMenuTracking', function() {
             entryTitle: 'Create StartEvent',
             selection: [ element ],
             triggerType: 'click'
-          }
+          },
+          type: 'tracking.event'
         });
       });
 
@@ -76,7 +77,7 @@ describe('PaletteMenuTracking', function() {
       triggerPalette('create.start-event');
 
       // then
-      expect(spy).to.have.been.called;
+      expect(spy).to.have.been.calledOnce;
     }));
 
 
@@ -87,7 +88,7 @@ describe('PaletteMenuTracking', function() {
       selection.select(element);
 
       const spy = sinon.spy(function(event) {
-        compareEvents(event, {
+        expect(event).to.jsonEqual({
           name: 'palette.trigger',
           data: {
             entryId: 'create',
@@ -95,7 +96,8 @@ describe('PaletteMenuTracking', function() {
             entryTitle: 'Create element',
             selection: [ element ],
             triggerType: 'click'
-          }
+          },
+          type: 'tracking.event'
         });
       });
 
@@ -106,7 +108,7 @@ describe('PaletteMenuTracking', function() {
       dispatchClick(icon);
 
       // then
-      expect(spy).to.have.been.called;
+      expect(spy).to.have.been.calledOnce;
     }));
 
   });
@@ -140,9 +142,4 @@ const dispatchClick = target => {
     cancelable: true
   });
   target.dispatchEvent(ev);
-};
-
-const compareEvents = (event, expected) => {
-  return expect(event.name).to.eql(expected.name) &&
-          expect(JSON.stringify(event.data)).to.equal(JSON.stringify(expected.data));
 };
