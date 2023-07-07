@@ -58,7 +58,7 @@ describe('ContextPadTracking', function() {
       selection.select(element);
 
       const spy = sinon.spy(function(event) {
-        compareEvents(event, {
+        expect(event).to.jsonEqual({
           name: 'contextPad.trigger',
           data: {
             entryId: 'replace',
@@ -66,7 +66,8 @@ describe('ContextPadTracking', function() {
             entryTitle: 'Change type',
             selection: [ element ],
             triggerType: 'click'
-          }
+          },
+          type: 'tracking.event'
         });
       });
 
@@ -76,7 +77,7 @@ describe('ContextPadTracking', function() {
       triggerContextPad('replace');
 
       // then
-      expect(spy).to.have.been.called;
+      expect(spy).to.have.been.calledOnce;
     }));
 
 
@@ -87,7 +88,7 @@ describe('ContextPadTracking', function() {
       selection.select(element);
 
       const spy = sinon.spy(function(event) {
-        compareEvents(event, {
+        expect(event).to.jsonEqual({
           name: 'contextPad.trigger',
           data: {
             entryId: 'append',
@@ -95,7 +96,8 @@ describe('ContextPadTracking', function() {
             entryTitle: 'Append element',
             selection: [ element ],
             triggerType: 'click'
-          }
+          },
+          type: 'tracking.event'
         });
       });
 
@@ -106,7 +108,7 @@ describe('ContextPadTracking', function() {
       dispatchClick(icon);
 
       // then
-      expect(spy).to.have.been.called;
+      expect(spy).to.have.been.calledOnce;
     }));
 
   });
@@ -145,9 +147,4 @@ const dispatchClick = target => {
     cancelable: true
   });
   target.dispatchEvent(ev);
-};
-
-const compareEvents = (event, expected) => {
-  return expect(event.name).to.eql(expected.name) &&
-          expect(JSON.stringify(event.data)).to.equal(JSON.stringify(expected.data));
 };

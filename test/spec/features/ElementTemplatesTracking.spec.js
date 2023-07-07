@@ -131,10 +131,19 @@ describe('ElementTemplatesTracking', function() {
     it('select element template', inject(async function(elementRegistry, bpmnJSTracking) {
 
       // given
-      const spy = sinon.spy();
       const element = elementRegistry.get('StartEvent_1');
 
       await selectElement(element);
+
+      const spy = sinon.spy(function(event) {
+        expect(event).to.jsonEqual({
+          name: 'elementTemplates.select',
+          data: {
+            element
+          },
+          type: 'tracking.event'
+        });
+      });
 
       bpmnJSTracking.on('tracking.event', spy);
 
@@ -143,22 +152,26 @@ describe('ElementTemplatesTracking', function() {
 
       // expect
       expect(spy).to.have.been.calledOnce;
-      expect(spy.getCalls()[0].args[1]).to.eql({
-        name: 'elementTemplates.select',
-        data: {
-          element
-        }
-      });
     }));
 
 
     it('update element template', inject(async function(elementRegistry, bpmnJSTracking) {
 
       // given
-      const spy = sinon.spy();
       const element = elementRegistry.get('StartEvent_2');
 
       await selectElement(element);
+
+      const spy = sinon.spy(function(event) {
+        expect(event).to.jsonEqual({
+          name: 'elementTemplates.update',
+          data: {
+            element,
+            newTemplate: templates[1]
+          },
+          type: 'tracking.event'
+        });
+      });
 
       bpmnJSTracking.on('tracking.event', spy);
 
@@ -170,23 +183,25 @@ describe('ElementTemplatesTracking', function() {
 
       // expect
       expect(spy).to.have.been.calledOnce;
-      expect(spy.getCalls()[0].args[1]).to.eql({
-        name: 'elementTemplates.update',
-        data: {
-          element,
-          newTemplate: templates[1]
-        }
-      });
     }));
 
 
     it('unlink element template', inject(async function(elementRegistry, bpmnJSTracking) {
 
       // given
-      const spy = sinon.spy();
       const element = elementRegistry.get('StartEvent_2');
 
       await selectElement(element);
+
+      const spy = sinon.spy(function(event) {
+        expect(event).to.jsonEqual({
+          name: 'elementTemplates.unlink',
+          data: {
+            element
+          },
+          type: 'tracking.event'
+        });
+      });
 
       bpmnJSTracking.on('tracking.event', spy);
 
@@ -198,22 +213,25 @@ describe('ElementTemplatesTracking', function() {
 
       // expect
       expect(spy).to.have.been.calledOnce;
-      expect(spy.getCalls()[0].args[1]).to.eql({
-        name: 'elementTemplates.unlink',
-        data: {
-          element
-        }
-      });
     }));
 
 
     it('remove element template', inject(async function(elementRegistry, bpmnJSTracking) {
 
       // given
-      const spy = sinon.spy();
       const element = elementRegistry.get('StartEvent_2');
 
       await selectElement(element);
+
+      const spy = sinon.spy(function(event) {
+        expect(event).to.jsonEqual({
+          name: 'elementTemplates.remove',
+          data: {
+            element
+          },
+          type: 'tracking.event'
+        });
+      });
 
       bpmnJSTracking.on('tracking.event', spy);
 
@@ -225,12 +243,6 @@ describe('ElementTemplatesTracking', function() {
 
       // expect
       expect(spy).to.have.been.calledOnce;
-      expect(spy.getCalls()[0].args[1]).to.eql({
-        name: 'elementTemplates.remove',
-        data: {
-          element
-        }
-      });
     }));
 
   });

@@ -81,7 +81,7 @@ describe('ModelingTracking', function() {
       const elements = createElements();
 
       // then
-      expect(spy).to.have.been.called;
+      expect(spy).to.have.been.calledOnce;
       expect(spy.getCalls()[0].args[1]).to.eql({
         name: 'modeling.createElements',
         data: {
@@ -103,7 +103,7 @@ describe('ModelingTracking', function() {
       const appendedElement = appendShape(source);
 
       // then
-      expect(spy).to.have.been.called;
+      expect(spy).to.have.been.calledOnce;
       expect(spy.getCalls()[0].args[1]).to.eql({
         name: 'modeling.appendElement',
         data: {
@@ -126,7 +126,7 @@ describe('ModelingTracking', function() {
       const newElement = replaceShape(oldElement);
 
       // then
-      expect(spy).to.have.been.called;
+      expect(spy).to.have.been.calledOnce;
       expect(spy.getCalls()[0].args[1]).to.eql({
         name: 'modeling.replaceElement',
         data: {

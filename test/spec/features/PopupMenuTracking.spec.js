@@ -74,9 +74,13 @@ describe('PopupMenuTracking', function() {
       selection.select(shape);
 
       const spy = sinon.spy(function(event) {
-        const { name, data } = event;
-        expect(name).to.eql('popupMenu.open');
-        expect(data.selection).to.eql([ shape ]);
+        expect(event).to.jsonEqual({
+          name: 'popupMenu.open',
+          data: {
+            selection: [ shape ]
+          },
+          type: 'tracking.event'
+        });
       });
 
       bpmnJSTracking.on('tracking.event', spy);
@@ -97,24 +101,26 @@ describe('PopupMenuTracking', function() {
       selection.select(shape);
 
       const spy = sinon.spy(function(event) {
-        if (event.name === 'popupMenu.trigger') {
-          const { data } = event;
-          expect(data.entryId).to.eql('replace-with-none-intermediate-throwing');
-          expect(data.entryGroup).to.eql('default');
-          expect(data.entryLabel).to.eql('Intermediate Throw Event');
-          expect(data.triggerType).to.eql('click');
-        }
+        expect(event).to.jsonEqual({
+          name: 'popupMenu.trigger',
+          data: {
+            entryId: 'replace-with-none-intermediate-throwing',
+            entryGroup: 'default',
+            entryLabel: 'Intermediate Throw Event',
+            triggerType: 'click'
+          },
+          type: 'tracking.event'
+        });
       });
 
+      triggerContextPad(shape, 'replace', 'click');
       bpmnJSTracking.on('tracking.event', spy);
 
       // when
-      triggerContextPad(shape, 'replace', 'click');
       triggerPopupMenu('replace-with-none-intermediate-throwing', 'click');
 
       // then
-      expect(spy).to.have.been.called;
-      expect(spy.getCalls()[1].args[1].name).to.eql('popupMenu.trigger');
+      expect(spy).to.have.been.calledOnce;
     }));
 
   });
