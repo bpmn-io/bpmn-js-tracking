@@ -111,6 +111,22 @@ describe('ContextPadTracking', function() {
       expect(spy).to.have.been.calledOnce;
     }));
 
+
+    it('handle broken events', inject(function(bpmnJSTracking, eventBus) {
+
+      // when
+      eventBus.fire('contextPad.trigger', {
+        entry: '',
+        event: {}
+      });
+
+      const spy = sinon.spy();
+      bpmnJSTracking.on('tracking.event', spy);
+
+      // then
+      expect(spy).to.not.have.been.called;
+    }));
+
   });
 
 });
