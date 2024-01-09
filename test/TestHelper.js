@@ -58,12 +58,12 @@ export function injectStyles() {
 
   insertCSS(
     'properties-panel.css',
-    require('@bpmn-io/properties-panel/assets/properties-panel.css').default
+    require('@bpmn-io/properties-panel/dist/assets/properties-panel.css').default
   );
 
   insertCSS(
     'element-templates.css',
-    require('bpmn-js-properties-panel/dist/assets/element-templates.css').default
+    require('bpmn-js-element-templates/dist/assets/element-templates.css').default
   );
 }
 
@@ -113,6 +113,7 @@ export function bootstrapPropertiesPanel(diagram, options, locals) {
 
     await whenStable(50);
     await attachPropertiesPanel();
+    return container;
   };
 }
 
@@ -125,4 +126,23 @@ export function clearPropertiesPanelContainer() {
 
 export function whenStable(timeout = 50) {
   return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
+export async function expectEventually(fn) {
+  const nextFrame = () => new Promise(resolve => {
+    requestAnimationFrame(resolve);
+  });
+
+  let e, i = 10;
+  do {
+    try {
+      await nextFrame();
+      await fn();
+      return;
+    } catch (error) {
+      e = error;
+    }
+  } while (i--);
+
+  throw e;
 }
