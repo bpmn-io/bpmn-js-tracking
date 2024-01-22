@@ -6,6 +6,10 @@ All notable changes to [@bpmn-io/bpmn-js-tracking](https://github.com/bpmn-io/bp
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.4.0
+
+* `FEAT`: track popup menu usage
+
 ## 0.3.3
 
 * `FIX`: check for empty events in `contextPad.trigger` and `palette.trigger`
