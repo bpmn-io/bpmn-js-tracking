@@ -82,7 +82,7 @@ describe('ModelingTracking', function() {
 
       // then
       expect(spy).to.have.been.calledOnce;
-      expect(spy.getCalls()[0].args[1]).to.eql({
+      expect(spy.getCalls()[0].args[1]).to.eventEqual({
         name: 'modeling.createElements',
         data: {
           elements
@@ -104,11 +104,12 @@ describe('ModelingTracking', function() {
 
       // then
       expect(spy).to.have.been.calledOnce;
-      expect(spy.getCalls()[0].args[1]).to.eql({
+
+      expect(spy.getCalls()[0].args[1]).to.eventEqual({
         name: 'modeling.appendElement',
         data: {
-          sourceElement: source,
-          element: appendedElement
+          element: appendedElement,
+          sourceElement: source
         }
       });
     }));
@@ -127,11 +128,11 @@ describe('ModelingTracking', function() {
 
       // then
       expect(spy).to.have.been.calledOnce;
-      expect(spy.getCalls()[0].args[1]).to.eql({
+      expect(spy.getCalls()[0].args[1]).to.eventEqual({
         name: 'modeling.replaceElement',
         data: {
-          oldElement,
-          newElement
+          newElement,
+          oldElement
         }
       });
     }));

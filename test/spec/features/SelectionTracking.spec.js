@@ -35,7 +35,7 @@ describe('SelectionTracking', function() {
     const newSelection = elementRegistry.get('StartEvent_1');
 
     const spy = sinon.spy(function(event) {
-      expect(event).to.jsonEqual({
+      expect(event).to.eventEqual({
         name: 'selection.select',
         data: {
           oldSelection: [],

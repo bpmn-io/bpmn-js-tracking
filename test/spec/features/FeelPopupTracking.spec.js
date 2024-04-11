@@ -90,7 +90,7 @@ describe('FeelPopupTracking', function() {
 
       const openSpy = sinon.spy(
         function(event) {
-          expect(event).to.jsonEqual({
+          expect(event).to.eventEqual({
             name: 'feelPopup.opened',
             data: {
               selection: [ element ]
@@ -125,7 +125,7 @@ describe('FeelPopupTracking', function() {
 
       const closeSpy = sinon.spy(
         function(event) {
-          expect(event).to.jsonEqual({
+          expect(event).to.eventEqual({
             name: 'feelPopup.closed',
             data: {
               selection: [ element ]

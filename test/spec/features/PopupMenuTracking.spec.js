@@ -74,7 +74,7 @@ describe('PopupMenuTracking', function() {
       selection.select(shape);
 
       const spy = sinon.spy(function(event) {
-        expect(event).to.jsonEqual({
+        expect(event).to.eventEqual({
           name: 'popupMenu.open',
           data: {
             selection: [ shape ]
@@ -101,7 +101,7 @@ describe('PopupMenuTracking', function() {
       selection.select(shape);
 
       const spy = sinon.spy(function(event) {
-        expect(event).to.jsonEqual({
+        expect(event).to.eventEqual({
           name: 'popupMenu.trigger',
           data: {
             entryId: 'replace-with-none-intermediate-throwing',

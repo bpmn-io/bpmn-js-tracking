@@ -12,14 +12,16 @@ import semver from 'semver';
 
 import TestContainer from 'mocha-test-container-support';
 
+import { sanitizeEvent } from '../lib/BpmnJSTracking';
+
 let PROPERTIES_PANEL_CONTAINER;
 
 global.chai.use(function(chai, utils) {
 
-  utils.addMethod(chai.Assertion.prototype, 'jsonEqual', function(comparison) {
+  utils.addMethod(chai.Assertion.prototype, 'eventEqual', function(comparison) {
 
     var actual = JSON.stringify(this._obj);
-    var expected = JSON.stringify(comparison);
+    var expected = JSON.stringify(sanitizeEvent(comparison));
 
     this.assert(
       actual == expected,

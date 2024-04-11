@@ -58,7 +58,7 @@ describe('ContextPadTracking', function() {
       selection.select(element);
 
       const spy = sinon.spy(function(event) {
-        expect(event).to.jsonEqual({
+        expect(event).to.eventEqual({
           name: 'contextPad.trigger',
           data: {
             entryId: 'replace',
@@ -88,7 +88,7 @@ describe('ContextPadTracking', function() {
       selection.select(element);
 
       const spy = sinon.spy(function(event) {
-        expect(event).to.jsonEqual({
+        expect(event).to.eventEqual({
           name: 'contextPad.trigger',
           data: {
             entryId: 'append',

@@ -58,7 +58,7 @@ describe('PaletteMenuTracking', function() {
       selection.select(element);
 
       const spy = sinon.spy(function(event) {
-        expect(event).to.jsonEqual({
+        expect(event).to.eventEqual({
           name: 'palette.trigger',
           data: {
             entryId: 'create.start-event',
@@ -88,7 +88,7 @@ describe('PaletteMenuTracking', function() {
       selection.select(element);
 
       const spy = sinon.spy(function(event) {
-        expect(event).to.jsonEqual({
+        expect(event).to.eventEqual({
           name: 'palette.trigger',
           data: {
             entryId: 'create',
