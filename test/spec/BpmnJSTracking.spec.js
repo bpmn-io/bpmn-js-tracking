@@ -140,6 +140,33 @@ describe('BpmnJSTracking', function() {
 
     }));
 
+
+    it('should strip PII data', inject(function(elementRegistry, eventBus) {
+      const trackingSpy = sinon.spy(function(event) {
+        expect(event.data.myCustomPayload.businessObject?.name).not.to.exist;
+        expect(event.data.myCustomPayload.id).not.to.exist;
+      });
+
+      eventBus.on('tracking.event', trackingSpy);
+
+      const element = elementRegistry.get('StartEvent_1');
+
+      // assume
+      expect(element.businessObject.name).to.eql('My very secret label');
+      expect(element.id).to.eql('StartEvent_1');
+
+      // when
+      trackingService.track({
+        data: {
+          myCustomPayload: element
+        }
+      });
+
+      // then
+      expect(trackingSpy).to.have.been.calledOnce;
+
+    }));
+
   });
 
 });

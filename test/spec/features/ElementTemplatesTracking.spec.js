@@ -139,7 +139,7 @@ describe('ElementTemplatesTracking', function() {
       await selectElement(element);
 
       const spy = sinon.spy(function(event) {
-        expect(event).to.jsonEqual({
+        expect(event).to.eventEqual({
           name: 'elementTemplates.select',
           data: {
             element
@@ -166,7 +166,7 @@ describe('ElementTemplatesTracking', function() {
       await selectElement(element);
 
       const spy = sinon.spy(function(event) {
-        expect(event).to.jsonEqual({
+        expect(event).to.eventEqual({
           name: 'elementTemplates.update',
           data: {
             element,
@@ -197,7 +197,7 @@ describe('ElementTemplatesTracking', function() {
       await selectElement(element);
 
       const spy = sinon.spy(function(event) {
-        expect(event).to.jsonEqual({
+        expect(event).to.eventEqual({
           name: 'elementTemplates.unlink',
           data: {
             element
@@ -227,7 +227,7 @@ describe('ElementTemplatesTracking', function() {
       await selectElement(element);
 
       const spy = sinon.spy(function(event) {
-        expect(event).to.jsonEqual({
+        expect(event).to.eventEqual({
           name: 'elementTemplates.remove',
           data: {
             element
