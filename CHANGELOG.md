@@ -6,6 +6,12 @@ All notable changes to [@bpmn-io/bpmn-js-tracking](https://github.com/bpmn-io/bp
 
 ___Note:__ Yet to be released changes appear here._
 
+* `FEAT`: do not track process meta-data
+
+### Breaking changes
+
+* Only a limited set of properties from elements are submitted to the tracking backend. This ensures no sensitive information is submitted.
+
 ## 0.4.0
 
 * `FEAT`: track popup menu usage
