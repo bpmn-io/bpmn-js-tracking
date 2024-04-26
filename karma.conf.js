@@ -1,3 +1,5 @@
+var path = require('path');
+
 var singleStart = process.env.SINGLE_START;
 
 var coverage = process.env.COVERAGE;
@@ -10,6 +12,10 @@ var browsers = (process.env.TEST_BROWSERS || 'ChromeHeadless').split(',');
 
 // use puppeteer provided Chrome for testing
 process.env.CHROME_BIN = require('puppeteer').executablePath();
+
+var basePath = '.';
+
+var absoluteBasePath = path.resolve(path.join(__dirname, basePath));
 
 module.exports = function(karma) {
 
@@ -45,9 +51,14 @@ module.exports = function(karma) {
     webpack: {
       mode: 'development',
       resolve: {
+        mainFields: [
+          'browser',
+          'module',
+          'main'
+        ],
         modules: [
           'node_modules',
-          __dirname
+          absoluteBasePath
         ]
       },
       module: {
