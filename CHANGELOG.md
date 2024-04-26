@@ -6,6 +6,10 @@ All notable changes to [@bpmn-io/bpmn-js-tracking](https://github.com/bpmn-io/bp
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.6.0
+
+* `FEAT`: track `@bpmn-io/refactorings` ([#40](https://github.com/bpmn-io/bpmn-js-tracking/pull/40))
+
 ## 0.5.0
 
 * `FEAT`: do not track process meta-data
