@@ -106,7 +106,7 @@ describe('PopupMenuTracking', function() {
           data: {
             entryId: 'replace-with-none-intermediate-throwing',
             entryGroup: 'default',
-            entryLabel: 'Intermediate Throw Event',
+            entryLabel: 'Intermediate throw event',
             triggerType: 'click'
           },
           type: 'tracking.event'
