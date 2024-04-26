@@ -63,7 +63,7 @@ describe('ContextPadTracking', function() {
           data: {
             entryId: 'replace',
             entryGroup: 'edit',
-            entryTitle: 'Change type',
+            entryTitle: 'Change element',
             selection: [ element ],
             triggerType: 'click'
           },

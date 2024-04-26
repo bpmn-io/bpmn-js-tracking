@@ -13,7 +13,7 @@ import PaletteTracking from 'lib/features/palette';
 import { CreateAppendAnythingModule } from 'bpmn-js-create-append-anything';
 
 
-describe('PaletteMenuTracking', function() {
+describe('PaletteTracking', function() {
 
   const diagram = require('test/spec/simple.bpmn').default;
 
@@ -63,7 +63,7 @@ describe('PaletteMenuTracking', function() {
           data: {
             entryId: 'create.start-event',
             entryGroup: 'event',
-            entryTitle: 'Create StartEvent',
+            entryTitle: 'Create start event',
             selection: [ element ],
             triggerType: 'click'
           },
