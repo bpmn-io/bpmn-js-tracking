@@ -24,14 +24,15 @@
   "author": "Beatriz Mendes <https://github.com/smbea>",
   "license": "MIT",
   "devDependencies": {
-    "@bpmn-io/properties-panel": "^3.15.0",
+    "@bpmn-io/properties-panel": "^3.18.2",
+    "@bpmn-io/refactorings": "^0.2.1",
     "@testing-library/preact": "^3.2.3",
     "babel-loader": "^9.1.2",
     "babel-plugin-istanbul": "^6.1.1",
-    "bpmn-js": "13.0.5",
-    "bpmn-js-create-append-anything": "^0.3.0",
-    "bpmn-js-element-templates": "^1.10.0",
-    "bpmn-js-properties-panel": "^5.7.0",
+    "bpmn-js": "^17.3.0",
+    "bpmn-js-create-append-anything": "^0.5.1",
+    "bpmn-js-element-templates": "^1.15.1",
+    "bpmn-js-properties-panel": "^5.15.0",
     "chai": "^4.3.6",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
@@ -57,6 +58,6 @@
     "sinon": "^14.0.0",
     "sinon-chai": "^3.7.0",
     "webpack": "^5.73.0",
-    "zeebe-bpmn-moddle": "^0.19.0"
+    "zeebe-bpmn-moddle": "^1.1.0"
   }
 }
