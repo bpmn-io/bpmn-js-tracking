@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import {
   inject,
   bootstrapPropertiesPanel,
@@ -54,21 +57,20 @@ describe('FeelPopupTracking', function() {
       const element = elementRegistry.get('Activity_1');
       await selectElement(element);
 
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const openSpy = spy(bpmnJSTracking, 'track');
 
       // when
       await whenStable();
       openFeelPopup();
 
       await expectEventually(() => {
-        expect(spy).to.have.been.calledOnce;
+        expect(openSpy).to.have.been.calledOnce;
       });
-
 
       closeFeelPopup();
 
       await expectEventually(() => {
-        expect(spy).to.have.been.calledTwice;
+        expect(openSpy).to.have.been.calledTwice;
       });
     }));
 
@@ -88,7 +90,7 @@ describe('FeelPopupTracking', function() {
       const element = elementRegistry.get('Activity_1');
       await selectElement(element);
 
-      const openSpy = sinon.spy(
+      const openSpy = spy(
         function(event) {
           expect(event).to.eventEqual({
             name: 'feelPopup.opened',
@@ -123,7 +125,7 @@ describe('FeelPopupTracking', function() {
       openFeelPopup();
       await whenStable();
 
-      const closeSpy = sinon.spy(
+      const closeSpy = spy(
         function(event) {
           expect(event).to.eventEqual({
             name: 'feelPopup.closed',

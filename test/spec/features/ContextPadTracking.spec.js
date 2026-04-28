@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import {
   bootstrapModeler,
   inject,
@@ -12,6 +15,7 @@ import { BpmnJSTracking } from 'lib';
 import ContextPadTracking from 'lib/features/context-pad';
 
 import { CreateAppendAnythingModule } from 'bpmn-js-create-append-anything';
+
 
 describe('ContextPadTracking', function() {
 
@@ -31,7 +35,7 @@ describe('ContextPadTracking', function() {
     it('contextpad.trigger', inject(function(bpmnJSTracking, contextPad, selection, elementRegistry) {
 
       // given
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
 
       const event = getContextPadEvent('StartEvent_1', 'replace');
 
@@ -39,7 +43,7 @@ describe('ContextPadTracking', function() {
       contextPad.trigger(null, event);
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
   });
@@ -57,7 +61,7 @@ describe('ContextPadTracking', function() {
       const element = elementRegistry.get('StartEvent_1');
       selection.select(element);
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'contextPad.trigger',
           data: {
@@ -71,13 +75,13 @@ describe('ContextPadTracking', function() {
         });
       });
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       triggerContextPad('replace');
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -87,7 +91,7 @@ describe('ContextPadTracking', function() {
       const element = elementRegistry.get('StartEvent_1');
       selection.select(element);
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'contextPad.trigger',
           data: {
@@ -101,14 +105,14 @@ describe('ContextPadTracking', function() {
         });
       });
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       const icon = domQuery('.djs-context-pad [data-action="append"] svg');
       dispatchClick(icon);
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -120,11 +124,11 @@ describe('ContextPadTracking', function() {
         event: {}
       });
 
-      const spy = sinon.spy();
-      bpmnJSTracking.on('tracking.event', spy);
+      const trackSpy = spy();
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // then
-      expect(spy).to.not.have.been.called;
+      expect(trackSpy).to.not.have.been.called;
     }));
 
   });

@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import {
   inject,
   bootstrapPropertiesPanel,
@@ -56,13 +59,13 @@ describe('ElementTemplatesTracking', function() {
       const element = elementRegistry.get('StartEvent_1');
       await selectElement(element);
 
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
 
       // when
       clickPropertiesPanelButton();
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -72,7 +75,7 @@ describe('ElementTemplatesTracking', function() {
       const element = elementRegistry.get('StartEvent_2');
       await selectElement(element);
 
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
 
       // when
       clickPropertiesPanelButton();
@@ -81,7 +84,7 @@ describe('ElementTemplatesTracking', function() {
       updateBtn.click();
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -91,7 +94,7 @@ describe('ElementTemplatesTracking', function() {
       const element = elementRegistry.get('StartEvent_2');
       await selectElement(element);
 
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
 
       // when
       clickPropertiesPanelButton();
@@ -100,7 +103,7 @@ describe('ElementTemplatesTracking', function() {
       updateBtn.click();
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -110,7 +113,7 @@ describe('ElementTemplatesTracking', function() {
       const element = elementRegistry.get('StartEvent_2');
       await selectElement(element);
 
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
 
       // when
       clickPropertiesPanelButton();
@@ -119,7 +122,7 @@ describe('ElementTemplatesTracking', function() {
       updateBtn.click();
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
   });
@@ -138,7 +141,7 @@ describe('ElementTemplatesTracking', function() {
 
       await selectElement(element);
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'elementTemplates.select',
           data: {
@@ -148,13 +151,13 @@ describe('ElementTemplatesTracking', function() {
         });
       });
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       clickPropertiesPanelButton();
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -165,7 +168,7 @@ describe('ElementTemplatesTracking', function() {
 
       await selectElement(element);
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'elementTemplates.update',
           data: {
@@ -176,7 +179,7 @@ describe('ElementTemplatesTracking', function() {
         });
       });
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       clickPropertiesPanelButton();
@@ -185,7 +188,7 @@ describe('ElementTemplatesTracking', function() {
       updateBtn.click();
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -196,7 +199,7 @@ describe('ElementTemplatesTracking', function() {
 
       await selectElement(element);
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'elementTemplates.unlink',
           data: {
@@ -206,7 +209,7 @@ describe('ElementTemplatesTracking', function() {
         });
       });
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       clickPropertiesPanelButton();
@@ -215,7 +218,7 @@ describe('ElementTemplatesTracking', function() {
       updateBtn.click();
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -226,7 +229,7 @@ describe('ElementTemplatesTracking', function() {
 
       await selectElement(element);
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'elementTemplates.remove',
           data: {
@@ -236,7 +239,7 @@ describe('ElementTemplatesTracking', function() {
         });
       });
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       clickPropertiesPanelButton();
@@ -245,7 +248,7 @@ describe('ElementTemplatesTracking', function() {
       updateBtn.click();
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
   });

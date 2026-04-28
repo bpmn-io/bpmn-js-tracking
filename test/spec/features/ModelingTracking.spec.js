@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import {
   bootstrapModeler,
   inject,
@@ -25,41 +28,41 @@ describe('ModelingTracking', function() {
     it('commandStack.shape.create.postExecuted', inject(function(bpmnJSTracking, modeling, canvas) {
 
       // given
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
 
       // when
       createElements();
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
     it('commandStack.shape.append.postExecuted', inject(function(bpmnJSTracking, elementRegistry) {
 
       // given
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
       const shape = elementRegistry.get('StartEvent_1');
 
       // when
       appendShape(shape);
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
     it('commandStack.shape.replace.postExecuted', inject(function(bpmnJSTracking, elementRegistry) {
 
       // given
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
 
       const oldShape = elementRegistry.get('StartEvent_1');
 
       replaceShape(oldShape);
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
   });
@@ -74,15 +77,15 @@ describe('ModelingTracking', function() {
     it('element created', inject(function(bpmnJSTracking) {
 
       // given
-      const spy = sinon.spy();
-      bpmnJSTracking.on('tracking.event', spy);
+      const trackSpy = spy();
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       const elements = createElements();
 
       // then
-      expect(spy).to.have.been.calledOnce;
-      expect(spy.getCalls()[0].args[1]).to.eventEqual({
+      expect(trackSpy).to.have.been.calledOnce;
+      expect(trackSpy.getCalls()[0].args[1]).to.eventEqual({
         name: 'modeling.createElements',
         data: {
           elements
@@ -94,18 +97,18 @@ describe('ModelingTracking', function() {
     it('element appended', inject(function(bpmnJSTracking, elementRegistry) {
 
       // given
-      const spy = sinon.spy();
+      const trackSpy = spy();
       const source = elementRegistry.get('StartEvent_1');
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       const appendedElement = appendShape(source);
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
 
-      expect(spy.getCalls()[0].args[1]).to.eventEqual({
+      expect(trackSpy.getCalls()[0].args[1]).to.eventEqual({
         name: 'modeling.appendElement',
         data: {
           element: appendedElement,
@@ -118,17 +121,17 @@ describe('ModelingTracking', function() {
     it('element replaced', inject(function(bpmnJSTracking, elementRegistry) {
 
       // given
-      const spy = sinon.spy();
+      const trackSpy = spy();
       const oldElement = elementRegistry.get('StartEvent_1');
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       const newElement = replaceShape(oldElement);
 
       // then
-      expect(spy).to.have.been.calledOnce;
-      expect(spy.getCalls()[0].args[1]).to.eventEqual({
+      expect(trackSpy).to.have.been.calledOnce;
+      expect(trackSpy.getCalls()[0].args[1]).to.eventEqual({
         name: 'modeling.replaceElement',
         data: {
           newElement,

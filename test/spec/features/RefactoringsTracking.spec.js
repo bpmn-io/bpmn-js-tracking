@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import {
   bootstrapModeler,
   inject
@@ -39,6 +42,7 @@ class FoobarProvider {
 
 FoobarProvider.$inject = [ 'eventBus', 'refactorings' ];
 
+
 describe('RefactoringsTracking', function() {
 
   const diagram = require('test/spec/simple.bpmn').default;
@@ -64,7 +68,7 @@ describe('RefactoringsTracking', function() {
     it('refactorings.execute', inject(async function(elementRegistry, bpmnJSTracking, refactorings) {
 
       // given
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
 
       const element = elementRegistry.get('StartEvent_1');
 
@@ -74,7 +78,7 @@ describe('RefactoringsTracking', function() {
       refactoring.execute();
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
   });
@@ -91,7 +95,7 @@ describe('RefactoringsTracking', function() {
       // given
       const element = elementRegistry.get('StartEvent_1');
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'refactorings.execute',
           data: {
@@ -103,7 +107,7 @@ describe('RefactoringsTracking', function() {
         });
       });
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       const [ refactoring ] = await refactorings.getRefactorings([ element ]);
 
@@ -111,7 +115,7 @@ describe('RefactoringsTracking', function() {
       refactoring.execute();
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
   });

@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import {
   bootstrapModeler,
   getBpmnJS,
@@ -30,14 +33,14 @@ describe('PopupMenuTracking', function() {
     it('popupMenu.open', inject(function(elementRegistry, bpmnJSTracking, popupMenu) {
 
       // given
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
       const element = elementRegistry.get('StartEvent_1');
 
       // when
       popupMenu.open(element, 'bpmn-replace', { x: 0, y: 0 });
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -47,7 +50,7 @@ describe('PopupMenuTracking', function() {
       const element = elementRegistry.get('StartEvent_1');
 
       popupMenu.open(element, 'bpmn-replace', { x: 0, y: 0 });
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
 
       const event = getPopupMenuEvent('replace-with-none-intermediate-throwing');
 
@@ -55,7 +58,7 @@ describe('PopupMenuTracking', function() {
       popupMenu.trigger(event);
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
   });
@@ -73,7 +76,7 @@ describe('PopupMenuTracking', function() {
       const shape = elementRegistry.get('StartEvent_1');
       selection.select(shape);
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'popupMenu.open',
           data: {
@@ -83,13 +86,13 @@ describe('PopupMenuTracking', function() {
         });
       });
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       triggerContextPad(shape, 'replace', 'click');
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
 
     }));
 
@@ -100,7 +103,7 @@ describe('PopupMenuTracking', function() {
       const shape = elementRegistry.get('StartEvent_1');
       selection.select(shape);
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'popupMenu.trigger',
           data: {
@@ -114,13 +117,13 @@ describe('PopupMenuTracking', function() {
       });
 
       triggerContextPad(shape, 'replace', 'click');
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       triggerPopupMenu('replace-with-none-intermediate-throwing', 'click');
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
   });

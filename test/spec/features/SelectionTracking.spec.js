@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import {
   bootstrapModeler,
   getBpmnJS,
@@ -34,7 +37,7 @@ describe('SelectionTracking', function() {
     // given
     const newSelection = elementRegistry.get('StartEvent_1');
 
-    const spy = sinon.spy(function(event) {
+    const trackSpy = spy(function(event) {
       expect(event).to.eventEqual({
         name: 'selection.select',
         data: {
@@ -45,14 +48,13 @@ describe('SelectionTracking', function() {
       });
     });
 
-    bpmnJSTracking.on('tracking.event', spy);
+    bpmnJSTracking.on('tracking.event', trackSpy);
 
     // when
     selection.select(newSelection);
 
     // then
-    expect(spy).to.have.been.calledOnce;
-
+    expect(trackSpy).to.have.been.calledOnce;
   }));
 
 });
