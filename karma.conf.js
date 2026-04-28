@@ -7,7 +7,7 @@ var coverage = process.env.COVERAGE;
 var suite = coverage ? 'test/coverageBundle.js' : 'test/testBundle.js';
 
 // configures browsers to run test against
-// any of [ 'ChromeHeadless', 'Chrome', 'Firefox', 'IE', 'PhantomJS' ]
+// any of [ 'ChromeHeadless', 'Chrome', 'Firefox' ]
 var browsers = (process.env.TEST_BROWSERS || 'ChromeHeadless').split(',');
 
 // use puppeteer provided Chrome for testing
