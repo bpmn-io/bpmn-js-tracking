@@ -6,6 +6,12 @@ import {
   inject
 } from 'bpmn-js/test/helper';
 
+import {
+  use as chaiUse
+} from 'chai';
+
+import sinonChai from 'sinon-chai';
+
 import Modeler from 'bpmn-js/lib/Modeler';
 
 import semver from 'semver';
@@ -16,7 +22,9 @@ import { sanitizeEvent } from '../lib/BpmnJSTracking';
 
 let PROPERTIES_PANEL_CONTAINER;
 
-global.chai.use(function(chai, utils) {
+chaiUse(sinonChai);
+
+chaiUse(function(chai, utils) {
 
   utils.addMethod(chai.Assertion.prototype, 'eventEqual', function(comparison) {
 

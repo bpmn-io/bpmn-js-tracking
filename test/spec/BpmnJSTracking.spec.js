@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import {
   bootstrapModeler,
   getBpmnJS,
@@ -95,7 +98,7 @@ describe('BpmnJSTracking', function() {
 
   describe('track', function() {
     let trackingService;
-    const trackSpy = sinon.spy();
+    const trackSpy = spy();
 
     beforeEach(bootstrapModeler(diagram, {
       additionalModules: [
@@ -126,7 +129,7 @@ describe('BpmnJSTracking', function() {
     it('should emit tracking event', inject(function(eventBus) {
 
       // given
-      const trackingSpy = sinon.spy(function(event) {
+      const trackingSpy = spy(function(event) {
         expect(event['foo']).to.eq('bar');
       });
 
@@ -142,7 +145,7 @@ describe('BpmnJSTracking', function() {
 
 
     it('should strip PII data', inject(function(elementRegistry, eventBus) {
-      const trackingSpy = sinon.spy(function(event) {
+      const trackingSpy = spy(function(event) {
         expect(event.data.myCustomPayload.businessObject?.name).not.to.exist;
         expect(event.data.myCustomPayload.id).not.to.exist;
       });

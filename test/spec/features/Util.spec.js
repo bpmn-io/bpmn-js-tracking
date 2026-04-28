@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import {
   getEventType
 } from 'lib/features/Util';

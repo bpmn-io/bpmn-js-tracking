@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy } from 'sinon';
+
 import {
   bootstrapModeler,
   inject
@@ -31,7 +34,7 @@ describe('PaletteTracking', function() {
     it('palette.trigger', inject(function(bpmnJSTracking, palette) {
 
       // given
-      const spy = sinon.spy(bpmnJSTracking, 'track');
+      const trackSpy = spy(bpmnJSTracking, 'track');
 
       const event = getPaletteEvent('create.start-event');
 
@@ -39,7 +42,7 @@ describe('PaletteTracking', function() {
       palette.trigger(null, event);
 
       // expect
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
   });
@@ -57,7 +60,7 @@ describe('PaletteTracking', function() {
       const element = elementRegistry.get('StartEvent_1');
       selection.select(element);
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'palette.trigger',
           data: {
@@ -71,13 +74,13 @@ describe('PaletteTracking', function() {
         });
       });
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       triggerPalette('create.start-event');
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -87,7 +90,7 @@ describe('PaletteTracking', function() {
       const element = elementRegistry.get('StartEvent_1');
       selection.select(element);
 
-      const spy = sinon.spy(function(event) {
+      const trackSpy = spy(function(event) {
         expect(event).to.eventEqual({
           name: 'palette.trigger',
           data: {
@@ -101,14 +104,14 @@ describe('PaletteTracking', function() {
         });
       });
 
-      bpmnJSTracking.on('tracking.event', spy);
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // when
       const icon = domQuery('.djs-palette [data-action="create"] svg');
       dispatchClick(icon);
 
       // then
-      expect(spy).to.have.been.calledOnce;
+      expect(trackSpy).to.have.been.calledOnce;
     }));
 
 
@@ -120,11 +123,11 @@ describe('PaletteTracking', function() {
         event: {}
       });
 
-      const spy = sinon.spy();
-      bpmnJSTracking.on('tracking.event', spy);
+      const trackSpy = spy();
+      bpmnJSTracking.on('tracking.event', trackSpy);
 
       // then
-      expect(spy).to.not.have.been.called;
+      expect(trackSpy).to.not.have.been.called;
     }));
 
   });
