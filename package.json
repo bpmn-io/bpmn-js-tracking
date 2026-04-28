@@ -26,7 +26,6 @@
   "devDependencies": {
     "@bpmn-io/properties-panel": "^3.18.2",
     "@bpmn-io/refactorings": "^0.2.1",
-    "@testing-library/preact": "^3.2.3",
     "babel-loader": "^10.1.1",
     "babel-plugin-istanbul": "^8.0.0",
     "bpmn-js": "^17.3.0",
