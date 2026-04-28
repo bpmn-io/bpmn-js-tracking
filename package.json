@@ -37,7 +37,6 @@
     "cross-env": "^10.1.0",
     "eslint": "^9.39.4",
     "eslint-plugin-bpmn-io": "^2.2.0",
-    "eslint-plugin-import": "^2.23.4",
     "karma": "^6.4.4",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher-2": "^3.3.0",
