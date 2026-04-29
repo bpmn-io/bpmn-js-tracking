@@ -170,6 +170,110 @@ describe('BpmnJSTracking', function() {
 
     }));
 
+
+    it('should strip PII data - self loop', inject(function(elementRegistry, eventBus) {
+      const trackingSpy = spy();
+
+      eventBus.on('tracking.event', trackingSpy);
+
+      // when
+      trackingService.track({
+        data: {
+          myCustomPayload: [
+            elementRegistry.get('SELF_LOOP_TASK'),
+            elementRegistry.get('SELF_LOOP_BACK_SEQUENCE_FLOW')
+          ]
+        }
+      });
+
+      // then
+      expect(trackingSpy).to.have.been.calledOnce;
+
+    }));
+
+
+    it('should strip PII data - indirect loop', inject(function(elementRegistry, eventBus) {
+      const trackingSpy = spy();
+
+      eventBus.on('tracking.event', trackingSpy);
+
+      // when
+      trackingService.track({
+        data: {
+          myCustomPayload: [
+            elementRegistry.get('INDIRECT_LOOP_TASK'),
+            elementRegistry.get('INDIRECT_LOOP_BACK_SEQUENCE_FLOW'),
+            elementRegistry.get('GATEWAY'),
+            elementRegistry.get('StartEvent_1')
+          ]
+        }
+      });
+
+      // then
+      expect(trackingSpy).to.have.been.calledOnce;
+
+    }));
+
+
+    it('should strip PII data - boundary loop', inject(function(elementRegistry, eventBus) {
+      const trackingSpy = spy();
+
+      eventBus.on('tracking.event', trackingSpy);
+
+      // when
+      trackingService.track({
+        data: {
+          myCustomPayload: [
+            elementRegistry.get('BOUNDARY_LOOP_TASK'),
+            elementRegistry.get('BOUNDARY_LOOP_BACK_SEQUENCE_FLOW'),
+            elementRegistry.get('BOUNDARY_EVENT')
+          ]
+        }
+      });
+
+      // then
+      expect(trackingSpy).to.have.been.calledOnce;
+
+    }));
+
+
+    it('should strip PII data - sub process (collapsed)', inject(function(elementRegistry, eventBus) {
+      const trackingSpy = spy();
+
+      eventBus.on('tracking.event', trackingSpy);
+
+      // when
+      trackingService.track({
+        data: {
+          myCustomPayload: [
+            elementRegistry.get('SUB_COLLAPSED')
+          ]
+        }
+      });
+
+      // then
+      expect(trackingSpy).to.have.been.calledOnce;
+
+    }));
+
+
+    it('should strip PII data - all elements', inject(function(elementRegistry, eventBus) {
+      const trackingSpy = spy();
+
+      eventBus.on('tracking.event', trackingSpy);
+
+      // when
+      trackingService.track({
+        data: {
+          myCustomPayload: elementRegistry.getAll()
+        }
+      });
+
+      // then
+      expect(trackingSpy).to.have.been.calledOnce;
+
+    }));
+
   });
 
 });
