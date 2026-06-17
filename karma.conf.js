@@ -10,9 +10,6 @@ var suite = coverage ? 'test/coverageBundle.js' : 'test/testBundle.js';
 // any of [ 'ChromeHeadless', 'Chrome', 'Firefox' ]
 var browsers = (process.env.TEST_BROWSERS || 'ChromeHeadless').split(',');
 
-// use puppeteer provided Chrome for testing
-process.env.CHROME_BIN = require('puppeteer').executablePath();
-
 var basePath = '.';
 
 var absoluteBasePath = path.resolve(path.join(__dirname, basePath));
